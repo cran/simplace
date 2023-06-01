@@ -1,8 +1,13 @@
-## ----eval=FALSE---------------------------------------------------------------
-#  install.packages('simplace',
-#     repos=c('https://r-forge.r-project.org','https://cran.r-project.org'))
+## ----setup, include=FALSE-----------------------------------------------------
+withSimplace <- FALSE
+try({
+  withSimplace <- !is.na(simplace::findFirstSimplaceInstallation())
+})
 
-## ----running, results='hide', eval=FALSE--------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
+#  install.packages('simplace')
+
+## ----running, results='hide', eval=withSimplace-------------------------------
 #  library(simplace)
 #  SimplaceInstallationDir <- findFirstSimplaceInstallation()
 #  
@@ -23,17 +28,17 @@
 #  
 #  closeProject(simplace)
 
-## ----plotting, fig.height=5, fig.width=6, eval=FALSE--------------------------
-#  resf <- resultToDataframe(result)
+## ----plotting, fig.height=5, fig.width=6, eval=withSimplace-------------------
+#  simdata <- resultToDataframe(result)
 #  
 #  dates <- 300:730
-#  weights <- resf[dates,
+#  weights <- simdata[dates,
 #      c("TOP_LINE_Roots","TOP_LINE_Leaves","TOP_LINE_Stems","TOP_LINE_StorageOrgans")]
 #  matplot(dates,weights,type="l",xlab="Days",ylab="Weight [g/m2]",main="Simulated Biomass")
 #  legend(300,800,legend=c("Roots","Leaves","Stems","Storage Organs"),lty=1:4,col=1:4)
 #  
 
-## ----contourplot, fig.height=5, fig.width=6, eval=FALSE-----------------------
+## ----contourplot, fig.height=5, fig.width=6, eval=withSimplace----------------
 #  resultlistexp <- resultToList(result,expand=TRUE)
 #  water <- resultlistexp$BOTTOM_ARRAY_VolumetricWaterContent
 #  wmat <- do.call(rbind,water)

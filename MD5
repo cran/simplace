@@ -1,12 +1,12 @@
-24dc9dd40594370ccb0709eec88e83cf *DESCRIPTION
+7ba7c46e757842ead12d4e656b603662 *DESCRIPTION
 7b0369a9c21a05dfd03f9e912930ab34 *NAMESPACE
-1d90f3af6ac473cceafdb1871415ee05 *NEWS
+01066101644d2414055f660ff4de833e *NEWS
 edcb9ba9608cae7bf15b30ee8d7630a1 *R/SimplaceWrapper.R
-c397d636863b12f84c13edf7f89b6d2c *R/SimplaceWrapperHelper.R
+3f7a89aeaf2afc96ce719bdc64f7d1cd *R/SimplaceWrapperHelper.R
 1413f2ee07e26407a197bfc185eb6f85 *build/vignette.rds
-71e8c56f739f95eb23fb6244f2638b9a *inst/doc/simplace.R
-67d72fc9ceb2fbc70f9215e9e611d07b *inst/doc/simplace.Rmd
-cad33073fc3119e27c9c1d365ecb51b4 *inst/doc/simplace.pdf
+e7849708768164367ff00814a2f363eb *inst/doc/simplace.R
+4ff9cce4190740badbcdf26569c9e271 *inst/doc/simplace.Rmd
+ab4650a7c4e39290ce8f14bea03b69c8 *inst/doc/simplace.pdf
 fe0be078bea1cdad13b59e83bb8b8511 *man/closeProject.Rd
 f7bb5f9d7b9bd18ee1624611fc5d168a *man/createSimulation.Rd
 3e30de80f7b823b594cd374b53aa63b4 *man/figures/logo.svg
@@ -36,4 +36,4 @@ d7f1167ee2b031de7c4861e49afaea05 *man/simplace.Rd
 a7a77b206d5d6f288590ddc0d1b4c516 *man/stepAllSimulations.Rd
 24a4fbd2ed7722895462c8422d5db30b *man/stepSimulation.Rd
 c0f3fc382645807dddf9e93d6531e8bc *man/varmapToList.Rd
-67d72fc9ceb2fbc70f9215e9e611d07b *vignettes/simplace.Rmd
+4ff9cce4190740badbcdf26569c9e271 *vignettes/simplace.Rmd
