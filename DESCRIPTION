@@ -1,8 +1,8 @@
 Package: simplace
 Type: Package
 Title: Interface to Use the Modelling Framework 'SIMPLACE'
-Version: 5.0.12
-Date: 2023-06-01
+Version: 5.0.13
+Date: 2023-08-21
 Encoding: UTF-8
 Author: Gunther Krauss
 Maintainer: Gunther Krauss <guntherkrauss@uni-bonn.de>
@@ -17,10 +17,7 @@ LazyLoad: yes
 VignetteBuilder: knitr
 Suggests: knitr, rmarkdown
 RoxygenNote: 7.2.3
-Repository: CRAN
-Repository/R-Forge/Project: simplace
-Repository/R-Forge/Revision: 66
-Repository/R-Forge/DateTimeStamp: 2023-06-01 11:07:25
-Date/Publication: 2023-06-01 11:50:02 UTC
 NeedsCompilation: no
-Packaged: 2023-06-01 11:25:10 UTC; rforge
+Packaged: 2023-08-22 21:06:03 UTC; k
+Repository: CRAN
+Date/Publication: 2023-08-23 00:00:07 UTC
