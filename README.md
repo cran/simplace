@@ -1,32 +1,15 @@
----
-title: "Interface to use Simplace from R"
-author: "Gunther Krauss"
-date: "`r format(Sys.Date(),format='%B %d, %Y')`"
-output: 
-  rmarkdown::pdf_document: 
-    number_sections: yes
-  rmarkdown::html_vignette:
-    number_sections: yes
-    fig-width: 7
-    fig-height: 6
-  
+<!-- badges: start -->
+[![CRAN](http://www.r-pkg.org/badges/version/simplace)](https://cran.r-project.org/package=simplace)
+[![simplace status badge](https://gk-crop.r-universe.dev/badges/simplace)](https://gk-crop.r-universe.dev)
+[![R-CMD-check](https://github.com/gk-crop/simplace_rpkg/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gk-crop/simplace_rpkg/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
-vignette: >
-  %\VignetteIndexEntry{Interface to use Simplace from R}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+# simplace <img src="man/figures/logo.svg" align="right" height="139" />
 
----
+R package to interact with the modeling framework Simplace
 
-```{r setup, include=FALSE}
-withSimplace <- FALSE
-try({
-  withSimplace <- !is.na(simplace::findFirstSimplaceInstallation())
-})
-```
-
-# Introduction
-This package provides methods to interact with the modelling framework <span style="font-variant:small-caps;">Simplace</span>^[
+## Introduction
+This package provides methods to interact with the modelling framework <span style="font-variant:small-caps;">Simplace</span> - 
 **S**<span style="font-variant:small-caps;">cientific</span> 
 **I**<span style="font-variant:small-caps;">mpact assessment and</span> 
 **M**<span style="font-variant:small-caps;">odelling</span>
@@ -34,7 +17,7 @@ This package provides methods to interact with the modelling framework <span sty
 **A**<span style="font-variant:small-caps;">dvanced</span> 
 **C**<span style="font-variant:small-caps;">rop and</span> 
 **E**<span style="font-variant:small-caps;">cosystem management</span>. 
-See [www.simplace.net](https://www.simplace.net/) for more information on Simplace]. Simplace is written in Java (and some parts in Scala) so one can access it from `R` via `rJava`. The purpose of this package is to simplify the interaction between R and Simplace, by providing functions to:
+See [www.simplace.net](https://www.simplace.net/) for more information on Simplace. Simplace is written in Java (and some parts in Scala) so one can access it from `R` via `rJava`. The purpose of this package is to simplify the interaction between R and Simplace, by providing functions to:
 
 - initialize and configure Simplace
 - load a simulation (solution and project)
@@ -43,20 +26,27 @@ See [www.simplace.net](https://www.simplace.net/) for more information on Simpla
 - get simulation output and convert it to formats suitable for R
 
 
-# Installing the Simplace Framework
+## Installing the Simplace Framework
+
 For installing <span style="font-variant:small-caps;">Simplace</span>, please consult the webpage [www.simplace.net](https://www.simplace.net/).
+
 A brief guide to install <span style="font-variant:small-caps;">Simplace</span>:
 
 - If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [openjdk.org](https://openjdk.org/) or [adoptium.net](https://adoptium.net) (recommended).
 - Get Simplace from [www.simplace.net](https://www.simplace.net/)
 - Install the `simplace` package in R:  
 
-```{r eval=FALSE}
+```r
 install.packages('simplace')
 ```
 
+The most recent development version can be installed from github:
+```r
+devtools::install_github("gk-crop/simplace_rpkg")
+```
+If you encounter errors, make sure to install the packages `devtools` and `rJava`.
 
-# Basic Usage
+## Basic Usage
 
 The usage of <span style="font-variant:small-caps;">Simplace</span> in R follows roughly this scheme:
 
@@ -68,20 +58,21 @@ The usage of <span style="font-variant:small-caps;">Simplace</span> in R follows
 - convert the result to a R object (`data.frame`, `list` etc.)
 
 
-# Troubleshooting
+## Troubleshooting
 
 - Package `rJava` should be installed automatically with `simplace`. If not, install it manually:  
 `install.packages('rJava')`
 - Architecture of R and Java have to match. If you are using 64-bit Java, you have to use 64-bit R.
 - If you want to use the development version instead of the console mode, make sure that the projects `simplace_core`, `simplace_modules` and optionally `simplace_run`  are in a common directory and set the installation dir to this directory.
 
-# Example
 
-## Run the simulation
+## Example
 
-```{r running, results='hide', eval=withSimplace}
+### Run the simulation
+
+```r
 library(simplace)
-SimplaceInstallationDir <- findFirstSimplaceInstallation()
+SimplaceInstallationDir <- findSimplaceInstallations()
 
 Solution <- paste(SimplaceInstallationDir,
         "simplace_run/simulation/gk/solution/complete/Complete.sol.xml",sep="")
@@ -103,15 +94,14 @@ closeProject(simplace)
 
 After specifying the directories and the solution, the framework is initialized and the project opened. The end date of the simulation is (re)set and the simulation is run. After the run the result is retrieved.
 
-\newpage
 
-## Get the result and plot it
+### Get the result and plot it
 
-```{r plotting, fig.height=5, fig.width=6, eval=withSimplace}
-simdata <- resultToDataframe(result)
+```r
+resf <- resultToDataframe(result)
 
 dates <- 300:730
-weights <- simdata[dates,
+weights <- resf[dates,
     c("TOP_LINE_Roots","TOP_LINE_Leaves","TOP_LINE_Stems","TOP_LINE_StorageOrgans")]
 matplot(dates,weights,type="l",xlab="Days",ylab="Weight [g/m2]",main="Simulated Biomass")
 legend(300,800,legend=c("Roots","Leaves","Stems","Storage Organs"),lty=1:4,col=1:4)
@@ -121,12 +111,11 @@ legend(300,800,legend=c("Roots","Leaves","Stems","Storage Organs"),lty=1:4,col=1
 The result is converted to a dataframe. Interesting variables are extracted and then plotted.
 
 
-\newpage
 
-## Get arrays and plot them as contour plot
+### Get arrays and plot them as contour plot
 
 
-```{r contourplot, fig.height=5, fig.width=6, eval=withSimplace}
+```r
 resultlistexp <- resultToList(result,expand=TRUE)
 water <- resultlistexp$BOTTOM_ARRAY_VolumetricWaterContent
 wmat <- do.call(rbind,water)
@@ -141,6 +130,3 @@ filled.contour(dates,-(layers:1),wmatpart[,layers:1],
 
 As the result contains an array which holds the water content for 40 layers, it is transformed to a list and the array is expanded.
 
-
-\newpage
-\tableofcontents

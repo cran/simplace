@@ -1,7 +1,7 @@
 ---
 title: "Interface to use Simplace from R"
 author: "Gunther Krauss"
-date: "`r Sys.setlocale('LC_ALL','English.utf8');format(Sys.Date(),format='%B %d, %Y')`"
+date: "`r format(Sys.Date(),format='%B %d, %Y')`"
 output: 
   rmarkdown::pdf_document: 
     number_sections: yes
@@ -12,7 +12,7 @@ output:
   
 
 vignette: >
-  %\VignetteIndexEntry{Simplace}
+  %\VignetteIndexEntry{Interface to use Simplace from R}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 
@@ -47,7 +47,7 @@ See [www.simplace.net](https://www.simplace.net/) for more information on Simpla
 For installing <span style="font-variant:small-caps;">Simplace</span>, please consult the webpage [www.simplace.net](https://www.simplace.net/).
 A brief guide to install <span style="font-variant:small-caps;">Simplace</span>:
 
-- If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [openjdk.java.net](https://openjdk.java.net/) or [adoptium.net](https://adoptium.net) (recommended).
+- If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [openjdk.org](https://openjdk.org/) or [adoptium.net](https://adoptium.net) (recommended).
 - Get Simplace from [www.simplace.net](https://www.simplace.net/)
 - Install the `simplace` package in R:  
 
